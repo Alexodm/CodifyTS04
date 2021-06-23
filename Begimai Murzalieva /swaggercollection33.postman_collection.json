@@ -1,5 +1,3 @@
-test
-
 {
 	"info": {
 		"_postman_id": "0b522fe0-a71a-49cf-bef6-2d3bc008472c",
@@ -380,12 +378,22 @@ test
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"200\", function () {",
-									"    pm.response.to.have.status(\"ok\");",
-									"});",
 									"pm.test(\"id\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"2992\");",
-									"});"
+									"});",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, [1000]);"
 								],
 								"type": "text/javascript"
 							}
@@ -417,6 +425,41 @@ test
 					"response": []
 				},
 				{
+					"name": "finduser1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Testik\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v2/user/Testik",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"user",
+								"Testik"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "userlogin",
 					"event": [
 						{
@@ -424,9 +467,21 @@ test
 							"script": {
 								"exec": [
 									"pm.test(\"Response time is less than 600ms\", function () {",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									"pm.expect(pm.response.responseTime).to.be.below(600);",
 									"});",
 									"pm.environment.get(\"username\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, [1500]);"
 								],
 								"type": "text/javascript"
 							}
@@ -468,7 +523,19 @@ test
 								"exec": [
 									"pm.test(\"response body has json with request queries\", function () {",
 									"    pm.response.to.have.jsonBody('message','2992');",
+									"});",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
 									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, [1500]);"
 								],
 								"type": "text/javascript"
 							}
@@ -509,9 +576,16 @@ test
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									""
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, [1500]);"
 								],
 								"type": "text/javascript"
 							}
@@ -748,7 +822,7 @@ test
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"setTimeout(function(){}, [1000]);"
+					"setTimeout(function(){}, [1500]);"
 				]
 			}
 		},
