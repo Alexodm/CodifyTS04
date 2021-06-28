@@ -15,7 +15,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.collectionVariables.set(\"name\", \"Mars\");",
 									"setTimeout(function(){}, [1000]);"
 								],
 								"type": "text/javascript"
@@ -80,6 +79,7 @@
 									"pm.test(\"pet_1067\", function () {",
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
+									"",
 									"pm.test(\"id\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"1067\");",
 									"});",
@@ -434,9 +434,31 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"Testik\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});"
+									"pm.test(\"id\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"2992\");",
+									"});",
+									"pm.test(\"username\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Testik\");",
+									"});",
+									"pm.test(\"firstname\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"t\");",
+									"});",
+									"pm.test(\"lastname\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Test\");",
+									"});",
+									"pm.test(\"email\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"test@gmail.com\");",
+									"});",
+									"pm.test(\"password\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"password\");",
+									"});",
+									"pm.test(\"phone\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"000102\");",
+									"});",
+									"pm.test(\"userStatus\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"0\");",
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -524,8 +546,8 @@
 									"pm.test(\"response body has json with request queries\", function () {",
 									"    pm.response.to.have.jsonBody('message','2992');",
 									"});",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Status code 200 name has string\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -576,7 +598,32 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"});"
+									"});",
+									"pm.test(\"email\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"test@gmail.com\");",
+									"});",
+									"pm.test(\"firstName\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"t\");",
+									"});",
+									"pm.test(\"id\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"2992\");",
+									"});",
+									"pm.test(\"lastName\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"test\");",
+									"});",
+									"pm.test(\"password\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"password111\");",
+									"});",
+									"pm.test(\"phone\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"009988\");",
+									"});",
+									"pm.test(\"userStatus\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"0\");",
+									"});",
+									"pm.test(\"username\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"testone\");",
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -663,11 +710,23 @@
 					"name": "deleteuser",
 					"event": [
 						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, [1500]);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"message\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"testone\");",
 									"});"
 								],
 								"type": "text/javascript"
