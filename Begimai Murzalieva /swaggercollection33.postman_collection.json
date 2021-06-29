@@ -15,7 +15,9 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"setTimeout(function(){}, [1000]);"
+									"setTimeout(function(){}, [1000]);",
+									"pm.collectionVariables.set(\"newpetid\", \"100\");",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -38,7 +40,9 @@
 									"});",
 									"pm.test(\"status\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"available\");",
-									"});"
+									"});",
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -49,7 +53,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": 1067,\n  \"category\": {\n    \"id\": 1067,\n    \"name\": \"Mars\"\n  },\n  \"name\": \"Mars\",\n  \"photoUrls\": [\n    \"www.photo.kg\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1067,\n      \"name\": \"Mars\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+							"raw": "{\n  \"id\": \"{{petid}}\",\n  \"category\": {\n    \"id\": {{petid}},\n    \"name\": \"{{name}}\"\n  },\n  \"name\": \"Mars\",\n  \"photoUrls\": [\n    \"www.photo.kg\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1067,\n      \"name\": \"Mars\"\n    }\n  ],\n  \"status\": \"available\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,10 +80,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"pet_1067\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
 									"pm.test(\"id\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"1067\");",
 									"});",
@@ -97,7 +97,8 @@
 									"});",
 									"pm.test(\"status\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"available\");",
-									"});"
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -107,7 +108,7 @@
 							"script": {
 								"exec": [
 									"setTimeout(function(){}, [1000]);",
-									""
+									"pm.collectionVariables.get(\"petid\");"
 								],
 								"type": "text/javascript"
 							}
@@ -117,14 +118,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/v2/pet/1067",
+							"raw": "{{URL}}/v2/pet/{{petid}}",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"v2",
 								"pet",
-								"1067"
+								"{{petid}}"
 							],
 							"query": [
 								{
@@ -144,9 +145,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Response time is less than 600ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);",
-									"});",
+									"",
 									"pm.test(\"Successful PUT request\", function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([200,201, 202]);",
 									"});",
@@ -167,7 +166,10 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"setTimeout(function(){}, [1000]);"
+									"setTimeout(function(){}, [1000]);",
+									"pm.collectionVariables.set(\"newname\", \"Miya1\");",
+									"pm.environment.set(\"newname2\", \"Miya2\");",
+									"pm.environment.set(\"newname3\", \"Miya3\");"
 								],
 								"type": "text/javascript"
 							}
@@ -178,7 +180,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": 1067,\n  \"category\": {\n    \"id\": 1067,\n    \"name\": \"Miya1\"\n  },\n  \"name\": \"Miya2\",\n  \"photoUrls\": [\n    \"www.photo.kg\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1067,\n      \"name\": \"Miya3\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+							"raw": "{\n  \"id\": 1067,\n  \"category\": {\n    \"id\": 1067,\n    \"name\": \"{{newname}}\"\n  },\n  \"name\": \"{{newname2}}\",\n  \"photoUrls\": [\n    \"www.photo.kg\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1067,\n      \"name\": \"{{newname3}}\"\n    }\n  ],\n  \"status\": \"available\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -208,8 +210,8 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"pet_1067\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
+									"pm.test(\"id\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"1067\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -240,14 +242,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/v2/pet/1067",
+							"raw": "{{URL}}/v2/pet/{{petid}}",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"v2",
 								"pet",
-								"1067"
+								"{{petid}}"
 							],
 							"query": [
 								{
@@ -270,8 +272,8 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"pet_1067\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
+									"pm.test(\"1067\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"message\");",
 									"});"
 								],
 								"type": "text/javascript"
@@ -291,14 +293,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/v2/pet/1067",
+							"raw": "{{URL}}/v2/pet/{{petid}}",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"v2",
 								"pet",
-								"1067"
+								"{{petid}}"
 							]
 						}
 					},
@@ -311,9 +313,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"pet_1067\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
 									"pm.test(\"Status code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
 									"});"
@@ -346,14 +345,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/v2/pet/1067",
+							"raw": "{{URL}}/v2/pet/{{petid}}",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"v2",
 								"pet",
-								"1067"
+								"{{petid}}"
 							],
 							"query": [
 								{
@@ -404,7 +403,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": 2992,\n  \"username\": \"Testik\",\n  \"firstName\": \"t\",\n  \"lastName\": \"Test\",\n  \"email\": \"test@gmail.com\",\n  \"password\": \"password\",\n  \"phone\": \"000102\",\n  \"userStatus\": 0\n}\n\n",
+							"raw": "{\n  \"id\": \"{{id}}\",\n  \"username\": \"{{username }}\",\n  \"firstName\": \"t\",\n  \"lastName\": \"Test\",\n  \"email\": \"test@gmail.com\",\n  \"password\": \"password\",\n  \"phone\": \"000102\",\n  \"userStatus\": 0\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -440,10 +439,10 @@
 									"pm.test(\"username\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"Testik\");",
 									"});",
-									"pm.test(\"firstname\", function () {",
+									"pm.test(\"firstName\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"t\");",
 									"});",
-									"pm.test(\"lastname\", function () {",
+									"pm.test(\"lastName\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"Test\");",
 									"});",
 									"pm.test(\"email\", function () {",
@@ -488,13 +487,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Response time is less than 600ms\", function () {",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.expect(pm.response.responseTime).to.be.below(600);",
-									"});",
-									"pm.environment.get(\"username\");"
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -530,6 +528,16 @@
 								{
 									"key": "password",
 									"value": "password"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
 								}
 							]
 						}
@@ -725,9 +733,11 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"pm.test(\"message\", function () {",
+									"pm.test(\"user\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"testone\");",
-									"});"
+									"});",
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -753,6 +763,15 @@
 				{
 					"name": "finduser Copy",
 					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, [1500]);"
+								],
+								"type": "text/javascript"
+							}
+						},
 						{
 							"listen": "test",
 							"script": {
@@ -791,88 +810,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "order",
-			"item": [
-				{
-					"name": "createorder",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Response time is less than 300ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(300);",
-									"",
-									"    pm.test(\"Status code name has string\", function () {",
-									"        pm.response.to.have.status(\"ok\");",
-									"    });"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"id\": 2992,\n  \"petId\": 1067,\n  \"quantity\": 1,\n  \"shipDate\": \"2021-06-14T16:19:04.637Z\",\n  \"status\": \"placed\",\n  \"complete\": false\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/v2/store/order",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"v2",
-								"store",
-								"order"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteorder",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/v2/store/order/2992",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"v2",
-								"store",
-								"order",
-								"2992"
-							]
-						}
-					},
-					"response": []
-				}
-			]
 		}
 	],
 	"event": [
@@ -902,7 +839,40 @@
 		},
 		{
 			"key": "name",
-			"value": ""
+			"value": "Mars"
+		},
+		{
+			"key": "access_token",
+			"value": "User-Agent: PostmanRuntime/7.28.0\nAccept: */*\nPostman-Token: 7c8427d4-a127-4dcc-9e2b-8c412536b8f2\nHost: petstore.swagger.io\nAccept-Encoding: gzip, deflate, br\nConnection: keep-alive\nResponse Headers\nDate: Tue, 29 Jun 2021 06:02:29 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nConnection: keep-alive\nAccess-Control-Allow-Origin: *\nAccess-Control-Allow-Methods: GET, POST, DELETE, PUT\nAccess-Control-Allow-Headers: Content-Type, api_key, Authorization\nServer: Jetty(9.2.9.v20150224)\nResponse Body\n{\"id\":1067,\"category\":{\"id\":1067,\"name\":\"Mars\"},\"name\":\"Mars\",\"photoUrls\":[\"www.photo.kg\"],\"tags\":[{\"id\":1067,\"name\":\"Mars\"}],\"status\":\"available\"}\n",
+			"disabled": true
+		},
+		{
+			"key": "petid",
+			"value": "1067"
+		},
+		{
+			"key": "id",
+			"value": "2992"
+		},
+		{
+			"key": "username ",
+			"value": "Testik"
+		},
+		{
+			"key": "newpetid",
+			"value": "100"
+		},
+		{
+			"key": "newname",
+			"value": "Miya1"
+		},
+		{
+			"key": "newname2",
+			"value": "Miya2"
+		},
+		{
+			"key": "newname3",
+			"value": "Miya3"
 		}
 	]
 }
