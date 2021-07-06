@@ -26,3 +26,10 @@ INSERT INTO EncashmentInfo ( id , PartnerID, EnDate, EnAmount, IsOnline ) VALUES
 
 DELETE FROM Services
 WHERE OperatorName = 'InternetOperator'
+
+-- 6 zadanie 
+
+    SELECT p.ID, PaymentID, TransactionID, ReceiptID, PersonalAccount, PaymentAmount, CurrencyID, PaymentDateTime, p.OperatorID, ServiceID, s.OperatorId, OperatorName, OperatorServiceId, OperatorEnabled,OperatorService, ServicePrefix, Comission, MinAmount, MaxAmount, ServiceEnabled,Type, ImageName, View
+	FROM Payments  p
+	INNER JOIN Services s ON ( p.id = s.id)
+	  
