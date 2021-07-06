@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "774940e6-3b55-4625-a1e0-5888759ddc9c",
+		"name": "PetCollection/Alexander.K",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pet Add to Delete",
+			"item": [
+				{
+					"name": "Add Pet",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1234,\n  \"category\": {\n    \"id\": 123,\n    \"name\": \"Dogs\"\n  },\n  \"name\": \"Charlietest\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 123,\n      \"name\": \"Doggie\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update existing pet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 123,\n  \"category\": {\n    \"id\": 123,\n    \"name\": \"Doggies\"\n  },\n  \"name\": \"JerryTest\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 123,\n      \"name\": \"Doggies\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInd Pet by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet/123",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a pet with form data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Jerrytest",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Sold",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet/123",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pet Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v2/pet/1234",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://petstore.swagger.io"
+		}
+	]
+}
