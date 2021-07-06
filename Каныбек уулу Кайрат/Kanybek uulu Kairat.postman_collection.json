@@ -1,0 +1,865 @@
+{
+	"info": {
+		"_postman_id": "bc4d1cf9-78c8-4915-99c1-25f017cf62cd",
+		"name": "Kanybek uulu Kairat",
+		"description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.\n\nContact Support:\n Email: apiteam@swagger.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pet",
+			"item": [
+				{
+					"name": "{pet Id}",
+					"item": [
+						{
+							"name": "Find pet by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "api_key",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pet/84237093333",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										"84237093333"
+									]
+								},
+								"description": "Returns a single pet"
+							},
+							"response": []
+						},
+						{
+							"name": "Updates a pet",
+							"request": {
+								"auth": {
+									"type": "oauth2"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "ad eiusmod eu do ea",
+											"description": "Updated name of the pet"
+										},
+										{
+											"key": "status",
+											"value": "nostrud incididunt dolor",
+											"description": "Updated status of the pet"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "-94228214",
+											"description": "(Required) ID of pet that needs to be updated"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deletes a pet",
+							"request": {
+								"auth": {
+									"type": "oauth2"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_key",
+										"value": "in sed enim"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pet/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "-94228214",
+											"description": "(Required) Pet id to delete"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Add a new pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Fish\",\n    \"photoUrls\": [\n        \"aliqua do\",\n        \"https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn1.disney.ru%2Fassets%2Fw693%2Fef1185c3-98ec-470f-89b7-9b0108d0e078.webp&imgrefurl=https%3A%2F%2Fdisney.ru%2Fcharacters%2Fnemo&tbnid=UoAEYI9xsPtoaM&vet=12ahUKEwj1kriO7MzxAhUFsyoKHecjBLsQMygdegUIARCRAg..i&docid=s4dHQXjeldEYyM&w=418&h=418&q=Nemo&ved=2ahUKEwj1kriO7MzxAhUFsyoKHecjBLsQMygdegUIARCRAg\"\n    ],\n    \"id\": 84237093,\n    \"category\": {\n        \"id\": -38681108,\n        \"name\": \"Nemo\"\n    },\n    \"tags\": [\n        {\n            \"id\": -16709474,\n            \"name\": \"do proident id\"\n        },\n        {\n            \"id\": 59660228,\n            \"name\": \"in nulla id culpa mollit\"\n        }\n    ],\n    \"status\": \"pending\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update  pet",
+					"request": {
+						"auth": {
+							"type": "oauth2"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 84237093333,\n    \"category\": {\n        \"id\": -38681108,\n        \"name\": \"Nemo LFA\"\n    },\n    \"name\": \"LFA LS\",\n    \"photoUrls\": [\n        \"aliqua do\",\n        \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFQnKqB6gMajj3KkCfXm53k76wFw2ne4CVjQ&usqp=CAU\"\n    ],\n    \"tags\": [\n        {\n            \"id\": -16709474,\n            \"name\": \"Fish\"\n        },\n        {\n            \"id\": 59660228,\n            \"name\": \"Nemo\"\n        }\n    ],\n    \"status\": \"pending\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finds Pets by status",
+					"request": {
+						"auth": {
+							"type": "oauth2"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pet/findByStatus?status=available&status=available",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "available",
+									"description": "(Required) Status values that need to be considered for filter"
+								},
+								{
+									"key": "status",
+									"value": "available",
+									"description": "(Required) Status values that need to be considered for filter"
+								}
+							]
+						},
+						"description": "Multiple status values can be provided with comma separated strings"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NegativeScenarious",
+			"item": [
+				{
+					"name": "Delete a pet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pet/84237093",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"84237093"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pet/84237093",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"84237093"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "store",
+			"item": [
+				{
+					"name": "order",
+					"item": [
+						{
+							"name": "{order Id}",
+							"item": [
+								{
+									"name": "Find purchase order by ID",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/store/order/:orderId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"store",
+												"order",
+												":orderId"
+											],
+											"variable": [
+												{
+													"key": "orderId",
+													"value": "5",
+													"description": "(Required) ID of pet that needs to be fetched"
+												}
+											]
+										},
+										"description": "For valid response try integer IDs with value >= 1 and <= 10.         Other values will generated exceptions"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete purchase order by ID",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/store/order/:orderId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"store",
+												"order",
+												":orderId"
+											],
+											"variable": [
+												{
+													"key": "orderId",
+													"value": "81407299",
+													"description": "(Required) ID of the order that needs to be deleted"
+												}
+											]
+										},
+										"description": "For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Place an order for a pet",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 43882262,\n    \"petId\": 14966600,\n    \"quantity\": 20151123,\n    \"shipDate\": \"1997-03-26T15:49:11.109Z\",\n    \"status\": \"approved\",\n    \"complete\": false\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/store/order",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"store",
+										"order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Returns pet inventories by status",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api_key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/store/inventory",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"store",
+								"inventory"
+							]
+						},
+						"description": "Returns a map of status codes to quantities"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "{username}",
+					"item": [
+						{
+							"name": "Get user by user name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"User_name\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Kanybek\");\r",
+											"pm.test(\"First_name\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Kairat\");\r",
+											"});\r",
+											"pm.test(\"Last_name\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Uulu\");\r",
+											"});\r",
+											"pm.test(\"Email_user\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Blackmoo69@gmail.com\");\r",
+											"});\r",
+											"pm.test(\"Password_user\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"qwerty\");\r",
+											"});\r",
+											"pm.test(\"Phone_user\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Phone\");\r",
+											"});\r",
+											"pm.test(\"User_status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"63475933\");\r",
+											"});\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/Kanybek",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"Kanybek"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updated user",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 12457800,\n    \"username\": \"Kanybek\",\n    \"firstName\": \"Kairat\",\n    \"lastName\": \"Uulu\",\n    \"email\": \"Blackmoo69@gmail.com\",\n    \"password\": \"qwerty\",\n    \"phone\": \"123456789\",\n    \"userStatus\": 63475933\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/Kanybek",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"Kanybek"
+									]
+								},
+								"description": "This can only be done by the logged in user."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/user/Kanybek",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"Kanybek"
+									]
+								},
+								"description": "This can only be done by the logged in user."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"First_name\", function () {\r",
+									"pm.expect(pm.response.text()).to.include(\"Some_first_name_of_user\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 124578,\n    \"username\": \"Kanybek\",\n    \"firstName\": \"Kairat\",\n    \"lastName\": \"Uulu\",\n    \"email\": \"Blackmoo69@gmail.com\",\n    \"password\": \"qwerty\",\n    \"phone\": \"123456789\",\n    \"userStatus\": 63475933\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "This can only be done by the logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "Creates list of users with given input array",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": -47846216,\n        \"username\": \"aliquip magna incididunt\",\n        \"firstName\": \"in minim quis laborum\",\n        \"lastName\": \"Duis ipsum labore\",\n        \"email\": \"dolor anim dolore nostrud\",\n        \"password\": \"non sunt velit laborum\",\n        \"phone\": \"ipsum amet\",\n        \"userStatus\": 11087577\n    },\n    {\n        \"id\": -95968021,\n        \"username\": \"adipisicing\",\n        \"firstName\": \"adipisicing consectetur dolor\",\n        \"lastName\": \"culpa in in qui Excepteur\",\n        \"email\": \"Lorem nulla fugiat ullamco\",\n        \"password\": \"et ipsum anim Ut\",\n        \"phone\": \"tempor\",\n        \"userStatus\": -40596171\n    }\n]"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/createWithArray",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"createWithArray"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates list of users with given input array",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": -24811229,\n        \"username\": \"dolor in anim dolor\",\n        \"firstName\": \"sit dolore sed in\",\n        \"lastName\": \"irure minim\",\n        \"email\": \"laboris consequat id laborum\",\n        \"password\": \"nostrud dolor\",\n        \"phone\": \"nulla nisi dolor\",\n        \"userStatus\": -76918369\n    },\n    {\n        \"id\": 18152644,\n        \"username\": \"qui eiusmod dolore est\",\n        \"firstName\": \"incididunt labore cill\",\n        \"lastName\": \"laboris qui Duis sunt\",\n        \"email\": \"id ipsum cupidatat ut\",\n        \"password\": \"dolore\",\n        \"phone\": \"qui mollit irure sunt\",\n        \"userStatus\": 31298653\n    }\n]"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/createWithList",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"createWithList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logs user into the system",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/login?username=in sed enim&password=in sed enim",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "in sed enim",
+									"description": "(Required) The user name for login"
+								},
+								{
+									"key": "password",
+									"value": "in sed enim",
+									"description": "(Required) The password for login in clear text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logs out current logged in user session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Checkpet Update",
+			"item": [
+				{
+					"name": "NewPET",
+					"request": {
+						"auth": {
+							"type": "oauth2"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"LFA\",\n    \"photoUrls\": [\n        \"aliqua do\",\n        \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFQnKqB6gMajj3KkCfXm53k76wFw2ne4CVjQ&usqp=CAU\"\n    ],\n    \"id\": 84237093,\n    \"category\": {\n        \"id\": -38681108,\n        \"name\": \"Nemo\"\n    },\n    \"tags\": [\n        {\n            \"id\": -16709474,\n            \"name\": \"do proident id\"\n        },\n        {\n            \"id\": 59660228,\n            \"name\": \"in nulla id culpa mollit\"\n        }\n    ],\n    \"status\": \"pending\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePet",
+					"request": {
+						"auth": {
+							"type": "oauth2"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 84237093333,\n    \"category\": {\n        \"id\": -38681108,\n        \"name\": \"Nemo LFA\"\n    },\n    \"name\": \"LFA LS\",\n    \"photoUrls\": [\n        \"aliqua do\",\n        \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFQnKqB6gMajj3KkCfXm53k76wFw2ne4CVjQ&usqp=CAU\"\n    ],\n    \"tags\": [\n        {\n            \"id\": -16709474,\n            \"name\": \"Fish\"\n        },\n        {\n            \"id\": 59660228,\n            \"name\": \"Nemo\"\n        }\n    ],\n    \"status\": \"pending\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindPetByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api_key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pet/123",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pet",
+								"123"
+							]
+						},
+						"description": "Returns a single pet"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"pm.test(\"Response time is less than 200ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://petstore.swagger.io/v2"
+		},
+		{
+			"key": "LFA",
+			"value": ""
+		}
+	]
+}
