@@ -280,11 +280,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Body has name Max1\", function () {\r",
+									"pm.test(\"Body has name Max\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"Max\");\r",
 									"});\r",
-									"pm.test(\"Status is Pending\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"727\");\r",
+									"pm.test(\"Status is sold\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"sold\");\r",
 									"});"
 								],
 								"type": "text/javascript"
