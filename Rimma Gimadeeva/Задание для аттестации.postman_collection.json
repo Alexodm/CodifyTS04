@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "46fb2092-901f-4225-b41a-aeef4d373584",
+		"name": "Задание для аттестации",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "Post Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Body has name Max\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Max\");\r",
+									"});\r",
+									"pm.test(\"ID  pet is 727\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"727\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 727,\r\n  \"category\": {\r\n    \"id\": 727,\r\n    \"name\": \"pitbull\"\r\n  },\r\n  \"name\": \"Max\",\r\n  \"photoUrls\": [\r\n    \"https://st2.depositphotos.com/1833015/5578/i/600/depositphotos_55789943-stock-photo-pit-bull-terrier-dog-on.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"blue eyes\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}'",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET my pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body has name Max\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Max\");\r",
+									"});\r",
+									"pm.test(\"ID  pet is 727\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"727\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet/727",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet",
+								"727"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT my pet- status edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 727,\r\n  \"category\": {\r\n    \"id\": 727,\r\n    \"name\": \"pitbull\"\r\n  },\r\n  \"name\": \"Max\",\r\n  \"photoUrls\": [\r\n    \"https://st2.depositphotos.com/1833015/5578/i/600/depositphotos_55789943-stock-photo-pit-bull-terrier-dog-on.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"blue eyes\"\r\n    }\r\n  ],\r\n  \"status\": \"sold\"\r\n}'",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /pet/findByStatus SOLD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet/findByStatus?status=sold",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "sold"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find PET by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body has name Max\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Max\");\r",
+									"});\r",
+									"pm.test(\"ID  pet is 727\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"727\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet/727",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet",
+								"727"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST- /pet/{petId} добавляем к pet новое имя Max1  и стату Sold",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Max1",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Pending",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet/727",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet",
+								"727"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET my pet Max1 with status Pending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body has name Max\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Max\");\r",
+									"});\r",
+									"pm.test(\"Status is sold\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"sold\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet/727",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet",
+								"727"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE pet ID727",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-api-key",
+								"value": "special-key",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet/727",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet",
+								"727"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Update Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body has name Max\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Max\");\r",
+									"});\r",
+									"pm.test(\"ID  pet is 727\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"727\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}v2/pet/727",
+							"host": [
+								"{{URL}}v2"
+							],
+							"path": [
+								"pet",
+								"727"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://petstore.swagger.io/"
+		}
+	]
+}
