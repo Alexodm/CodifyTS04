@@ -1,12 +1,12 @@
 {
 	"info": {
 		"_postman_id": "0b522fe0-a71a-49cf-bef6-2d3bc008472c",
-		"name": "swaggercollection",
+		"name": "petstorecollection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "petadd",
+			"name": "pet scenario",
 			"item": [
 				{
 					"name": "create pet",
@@ -86,14 +86,8 @@
 									"pm.test(\"name\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"Mars\");",
 									"});",
-									"pm.test(\"name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"Mars\");",
-									"});",
 									"pm.test(\"photoUrls \", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"www.photo.kg\");",
-									"});",
-									"pm.test(\"name\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"Mars\");",
 									"});",
 									"pm.test(\"status\", function () {",
 									"    pm.expect(pm.response.text()).to.include(\"available\");",
@@ -368,7 +362,7 @@
 			]
 		},
 		{
-			"name": "createuser",
+			"name": "user scenario",
 			"item": [
 				{
 					"name": "createuser",
@@ -467,14 +461,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/v2/user/Testik",
+							"raw": "{{URL}}/v2/user/{{username }}",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"v2",
 								"user",
-								"Testik"
+								"{{username }}"
 							]
 						}
 					},
@@ -843,8 +837,7 @@
 		},
 		{
 			"key": "access_token",
-			"value": "User-Agent: PostmanRuntime/7.28.0\nAccept: */*\nPostman-Token: 7c8427d4-a127-4dcc-9e2b-8c412536b8f2\nHost: petstore.swagger.io\nAccept-Encoding: gzip, deflate, br\nConnection: keep-alive\nResponse Headers\nDate: Tue, 29 Jun 2021 06:02:29 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nConnection: keep-alive\nAccess-Control-Allow-Origin: *\nAccess-Control-Allow-Methods: GET, POST, DELETE, PUT\nAccess-Control-Allow-Headers: Content-Type, api_key, Authorization\nServer: Jetty(9.2.9.v20150224)\nResponse Body\n{\"id\":1067,\"category\":{\"id\":1067,\"name\":\"Mars\"},\"name\":\"Mars\",\"photoUrls\":[\"www.photo.kg\"],\"tags\":[{\"id\":1067,\"name\":\"Mars\"}],\"status\":\"available\"}\n",
-			"disabled": true
+			"value": "User-Agent: PostmanRuntime/7.28.0\nAccept: */*\nPostman-Token: 7c8427d4-a127-4dcc-9e2b-8c412536b8f2\nHost: petstore.swagger.io\nAccept-Encoding: gzip, deflate, br\nConnection: keep-alive\nResponse Headers\nDate: Tue, 29 Jun 2021 06:02:29 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nConnection: keep-alive\nAccess-Control-Allow-Origin: *\nAccess-Control-Allow-Methods: GET, POST, DELETE, PUT\nAccess-Control-Allow-Headers: Content-Type, api_key, Authorization\nServer: Jetty(9.2.9.v20150224)\nResponse Body\n{\"id\":1067,\"category\":{\"id\":1067,\"name\":\"Mars\"},\"name\":\"Mars\",\"photoUrls\":[\"www.photo.kg\"],\"tags\":[{\"id\":1067,\"name\":\"Mars\"}],\"status\":\"available\"}\n"
 		},
 		{
 			"key": "petid",
