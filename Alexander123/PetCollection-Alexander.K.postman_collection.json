@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "774940e6-3b55-4625-a1e0-5888759ddc9c",
+		"name": "PetCollection/Alexander.K",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pet Add to Delete",
+			"item": [
+				{
+					"name": "Add Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);",
+									"});",
+									"pm.test(\"id\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"1234\");",
+									"});",
+									"pm.test(\"name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Charlietest\");",
+									"});",
+									"pm.test(\"status\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"available\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"{{petid}}\",\n  \"category\": {\n    \"id\": {{categoryid}},\n    \"name\": \"{{name}}\"\n  },\n  \"name\": \"Charlietest\",\n  \"photoUrls\": [\n    \"Somephoto\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 123,\n      \"name\": \"Doggie\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update existing pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200,201,202\", function () {",
+									"    pm.response.to.have.status(200, 201, 202);",
+									"});",
+									"pm.test(\"newname1\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Jerrytest1\");",
+									"});",
+									"pm.test(\"newname2\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Jerrytest2\");",
+									"});",
+									"pm.test(\"newname3\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Jerrytest3\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"newname\", \"Jerrytest1\");",
+									"pm.environment.set(\"newname2\", \"Jerrytest2\");",
+									"pm.environment.set(\"newname3\", \"Jerrytest3\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 123,\n  \"category\": {\n    \"id\": 123,\n    \"name\": \"{{newname1}}\"\n  },\n  \"name\": \"{{newname2}}\",\n  \"photoUrls\": [\n    \"Somephoto\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 123,\n      \"name\": \"{{newname3}}\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Pet by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"photoUrls\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"photoUrls\");",
+									"});",
+									"pm.test(\"newcategoryid\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"123\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.get(\"categoryid\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet/{{newcategoryid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{newcategoryid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a pet with form data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);",
+									"});",
+									"pm.test(\"status\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"sold\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Jerrytest",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Sold",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/v2/pet/{{newcategoryid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{newcategoryid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/v2/pet/{{petid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{petid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://petstore.swagger.io"
+		},
+		{
+			"key": "name",
+			"value": "Charlietest"
+		},
+		{
+			"key": "petid",
+			"value": "123"
+		},
+		{
+			"key": "categoryid",
+			"value": "1234"
+		},
+		{
+			"key": "newcategoryid",
+			"value": "123"
+		},
+		{
+			"key": "newname1",
+			"value": "Jerrytest1"
+		},
+		{
+			"key": "newname2",
+			"value": "Jerrytest2"
+		},
+		{
+			"key": "newname3",
+			"value": "Jerrytest3"
+		},
+		{
+			"key": "newname",
+			"value": ""
+		}
+	]
+}
