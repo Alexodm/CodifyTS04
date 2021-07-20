@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "76b9dd85-9f6e-4b16-b6ea-6d9cee63b125",
+		"name": "Для Аттестации",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 159753,\r\n  \"category\": {\r\n    \"id\": 159753,\r\n    \"name\": \"Legion\"\r\n  },\r\n  \"name\": \"Legion\",\r\n  \"photoUrls\": [\r\n    \"www.lenovo.com\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 159753,\r\n      \"name\": \"Legion\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url}}/pet",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(159753);\r",
+							"});\r",
+							"pm.test(\"Verify name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Legion\");\r",
+							"});\r",
+							"pm.test(\"Verify photourls\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls).to.eql(\"www.lenovo.com\");\r",
+							"});\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"available\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/pet/159753",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet",
+						"159753"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Pet id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"sold\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 858,\r\n  \"category\": {\r\n    \"id\": 858,\r\n    \"name\": \"Legion\"\r\n  },\r\n  \"name\": \"Legion\",\r\n  \"photoUrls\": [\r\n    \"www.lenovo.com\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 858,\r\n      \"name\": \"Legion\"\r\n    }\r\n  ],\r\n  \"status\": \"sold\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url}}/pet",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(858);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/pet/858",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet",
+						"858"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update pet status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"verify status \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"sold\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 858,\r\n  \"category\": {\r\n    \"id\": 858,\r\n    \"name\": \"Legion\"\r\n  },\r\n  \"name\": \"Legion\",\r\n  \"photoUrls\": [\r\n    \"www.lenovo.com\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 858,\r\n      \"name\": \"Legion\"\r\n    }\r\n  ],\r\n  \"status\": \"sold\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url}}/pet",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"sold\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/pet/858",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet",
+						"858"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/pet/858",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet",
+						"858"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/pet/858",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"pet",
+						"858"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Url",
+			"value": ""
+		}
+	]
+}
